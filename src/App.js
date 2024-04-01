@@ -155,7 +155,8 @@ const App = () => {
               'string' : `${firstOperand}${operator}${secondOperand}`
             }
           }).then(res => {
-            setDisplay(res.data)
+
+            setDisplay(res.data.result)
           });
             }}>=</button>
             <button value="" className={styles.myButton} onClick={e => {
