@@ -83,6 +83,7 @@ const App = () => {
   //   </div>
   // );
 
+  let object
 
 
 
@@ -162,7 +163,16 @@ const App = () => {
             <button value="" className={styles.myButton} onClick={e => {
 
               console.log(`${firstOperand}${operator}${secondOperand}`)
+              axios({
+            method: 'post',
+            url: 'http://127.0.0.1:8000/calculate',
+            data: {
+              'num' : `${firstOperand}${operator}${secondOperand}`
+            }
+          }).then(res => {
 
+              object = res.data.result
+          });
               setFirstOperand("");
               setOperator("");
               setSecondOperand("");
@@ -173,6 +183,13 @@ const App = () => {
         </div>
 
       </div>
+
+      {
+        object.map(el => {
+          return (<div>{el}</div>)
+        })
+      }
+
     </div>
   )
 
